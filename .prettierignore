@@ -1,0 +1,7 @@
+public/art/
+docs/*.png
+node_modules/
+data/
+test-results/
+playwright-report/
+package-lock.json

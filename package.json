@@ -1,0 +1,23 @@
+{
+  "name": "waldo-field-notes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An illustrated photo-tagging game with server-verified finds and scores.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "generate:scenes": "node scripts/generate-scenes.js",
+    "test": "node --test",
+    "test:browser": "playwright test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "prettier": "^3.9.9"
+  }
+}

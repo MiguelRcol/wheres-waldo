@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -70 60 90"><g stroke="#343d36" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="0" cy="13" rx="13" ry="4" fill="#46584e" opacity=".13" stroke="none"/>
+    <path d="M-9 -22 L-14 5 Q0 13 14 5 L9 -22Z" fill="#5576a4" />
+    <path d="M-9 11 L-3 11 M5 11 L11 11" fill="none" stroke="#343d36" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-8 -24 L-14 -5 M8 -24 L14 -5" fill="none" stroke="#d9875e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <ellipse cx="-14" cy="-3" rx="2" ry="3" fill="#efc5a1" /><ellipse cx="14" cy="-3" rx="2" ry="3" fill="#efc5a1" />
+    
+    
+    
+    <ellipse cx="0" cy="-36" rx="8" ry="10" fill="#efc5a1" />
+    
+    <path d="M-8 -43 L0 -65 L9 -43Z" fill="#5576a4" /><ellipse cx="0" cy="-43" rx="13" ry="3" fill="#5576a4" /><path d="M-8 -32 Q0 -25 8 -32 L5 -12 L0 -7 L-6 -13Z" fill="#f5efda" /><path d="M17 -5 L19 -43 Q19 -51 26 -49" fill="none" stroke="#a57543" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    
+    <path d="M-3 -36 L-2 -36 M3 -36 L4 -36" fill="none" stroke="#343d36" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-2 -30 Q0 -28 3 -30" fill="none" stroke="#343d36" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+  </g></svg>

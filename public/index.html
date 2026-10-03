@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f5ee" />
+    <meta
+      name="description"
+      content="Slow down, look closer, and find familiar faces in three original illustrated worlds. An online Where’s Waldo game."
+    />
+    <title>Field Notes — Where’s Waldo?</title>
+    <link rel="icon" href="/art/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <svg
+      class="icon-library"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <symbol id="search" viewBox="0 0 24 24">
+        <circle cx="10.5" cy="10.5" r="6.5" />
+        <path d="m16 16 5 5" />
+      </symbol>
+      <symbol id="arrow" viewBox="0 0 24 24">
+        <path d="M4 12h16m-6-6 6 6-6 6" />
+      </symbol>
+      <symbol id="clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="13" r="8" />
+        <path d="M12 8v5l3 2M9 2h6M12 2v3" />
+      </symbol>
+      <symbol id="trophy" viewBox="0 0 24 24">
+        <path
+          d="M7 3h10v6a5 5 0 0 1-10 0V3Zm10 2h4v3a4 4 0 0 1-4 4M7 5H3v3a4 4 0 0 0 4 4M12 14v6M8 21h8"
+        />
+      </symbol>
+      <symbol id="refresh" viewBox="0 0 24 24">
+        <path d="M20 10a8 8 0 1 0 0 6M20 4v6h-6" />
+      </symbol>
+      <symbol id="check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6" />
+      </symbol>
+      <symbol id="close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M18 6 6 18" />
+      </symbol>
+      <symbol id="plus" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5v14" />
+      </symbol>
+      <symbol id="minus" viewBox="0 0 24 24"><path d="M5 12h14" /></symbol>
+      <symbol id="expand" viewBox="0 0 24 24">
+        <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" />
+      </symbol>
+      <symbol id="help" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M9 8a3 3 0 0 1 6 1c0 2-3 2-3 4m0 3v.2" />
+      </symbol>
+      <symbol id="leaf" viewBox="0 0 24 24">
+        <path d="M20 3C7 2 3 7 5 14s14 8 15-11ZM5 21 16 8" />
+      </symbol>
+    </svg>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Field Notes home"
+        ><span class="brand-mark"
+          ><svg class="icon"><use href="#search" /></svg></span
+        ><span>field notes<span class="brand-dot">.</span></span></a
+      >
+      <nav aria-label="Main navigation">
+        <button id="play-nav" class="nav-button active">The hunt</button
+        ><button id="leaderboard-nav" class="nav-button">Leaderboard</button>
+      </nav>
+      <button id="help-button" class="help-button">
+        <svg class="icon"><use href="#help" /></svg><span>How to play</span>
+      </button>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-heading">
+        <div>
+          <div class="eyebrow"><span></span> A WHERE’S WALDO ADVENTURE</div>
+          <h1 id="page-heading">Small details. <em>Big discoveries.</em></h1>
+          <p>
+            A world full of stories. Three familiar faces. How sharp are your
+            eyes?
+          </p>
+        </div>
+        <div class="intro-stamp">
+          <svg class="icon"><use href="#search" /></svg
+          ><span>GET LOST.<br />LOOK CLOSER.</span
+          ><span class="stamp-star">✳</span>
+        </div>
+      </section>
+      <section id="game-view" class="game-layout" aria-label="The hunt">
+        <div class="scene-panel">
+          <div class="scene-heading">
+            <div class="scene-title">
+              <span class="scene-number">01</span>
+              <div>
+                <h2 id="scene-name">Sunday in the park</h2>
+                <span id="scene-location">A little green escape</span>
+              </div>
+            </div>
+            <div class="scene-meta">
+              <span id="difficulty" class="difficulty">Easy</span
+              ><span class="timer"
+                ><svg class="icon"><use href="#clock" /></svg
+                ><span id="timer" aria-label="Elapsed time">00:00</span></span
+              >
+            </div>
+          </div>
+          <div id="scene-viewport" class="scene-viewport">
+            <div id="scene-canvas" class="scene-canvas">
+              <img
+                id="scene-image"
+                src="/art/park.svg"
+                alt="A busy illustrated park with winding paths, a pond, a café, and a crowd of people"
+                draggable="false"
+                tabindex="0"
+                aria-label="Game scene. Click a character to identify them. Use arrow keys and Enter to tag with the keyboard."
+              />
+              <div id="markers" class="markers"></div>
+              <div id="keyboard-cursor" class="keyboard-cursor" hidden></div>
+              <div id="target" class="target" hidden>
+                <div class="target-box"></div>
+                <div
+                  id="target-menu"
+                  class="target-menu"
+                  role="group"
+                  aria-label="Who did you find?"
+                >
+                  <p>WHO DID YOU FIND?</p>
+                  <div id="target-options"></div>
+                </div>
+              </div>
+            </div>
+            <div id="start-overlay" class="start-overlay">
+              <div class="start-card">
+                <span class="small-label">YOUR NEXT LITTLE ADVENTURE</span>
+                <h3>Somewhere in the crowd…</h3>
+                <p>Waldo and friends are waiting to be found.</p>
+                <button id="start-button" class="primary-button">
+                  Let’s find them
+                  <svg class="icon"><use href="#arrow" /></svg></button
+                ><span class="start-note"
+                  >3 characters · No time limit · Just a keen eye</span
+                >
+              </div>
+            </div>
+            <div id="zoom-controls" class="zoom-controls">
+              <button id="zoom-out" aria-label="Zoom out" disabled>
+                <svg class="icon"><use href="#minus" /></svg></button
+              ><span id="zoom-label">100%</span
+              ><button id="zoom-in" aria-label="Zoom in">
+                <svg class="icon"><use href="#plus" /></svg></button
+              ><span class="zoom-divider"></span
+              ><button id="zoom-reset" aria-label="Fit scene to screen">
+                <svg class="icon"><use href="#expand" /></svg>
+              </button>
+            </div>
+          </div>
+          <div class="scene-footer">
+            <span
+              ><span class="live-dot"></span
+              ><span id="scene-instruction"
+                >A good adventure starts with a closer look.</span
+              ></span
+            ><button id="restart-button" class="text-button" disabled>
+              <svg class="icon"><use href="#refresh" /></svg>Start over
+            </button>
+          </div>
+        </div>
+        <aside class="hunt-sidebar">
+          <div class="find-heading">
+            <div>
+              <span class="small-label">THE LOOKOUT LIST</span>
+              <h2>Find these three.</h2>
+            </div>
+            <span id="found-count" class="found-count">0 / 3</span>
+          </div>
+          <div id="character-list" class="character-list"></div>
+          <div class="progress-track"><span id="progress-bar"></span></div>
+          <p id="progress-note" class="progress-note">
+            Three faces. One little adventure.
+          </p>
+          <div class="tip-card">
+            <span class="tip-icon">✧</span>
+            <div>
+              <span class="small-label">A FIELD NOTE</span>
+              <p>
+                Take your time. Click a familiar face, then tell us who you’ve
+                spotted.
+              </p>
+              <span>Zoom in for the little details.</span>
+            </div>
+          </div>
+          <button id="sidebar-leaderboard" class="leaderboard-link">
+            <span
+              ><svg class="icon"><use href="#trophy" /></svg>Meet the eagle
+              eyes</span
+            ><svg class="icon"><use href="#arrow" /></svg>
+          </button>
+        </aside>
+      </section>
+      <section id="leaderboard-view" class="leaderboard-view" hidden>
+        <div class="leaderboard-heading">
+          <div>
+            <span class="eyebrow">THE EAGLE EYES CLUB</span>
+            <h2>A little friendly competition.</h2>
+            <p>The quickest explorers, with times verified on the server.</p>
+          </div>
+          <button id="back-to-hunt" class="secondary-button">
+            Back to the hunt <svg class="icon"><use href="#arrow" /></svg>
+          </button>
+        </div>
+        <div id="leaderboard-tabs" class="leaderboard-tabs"></div>
+        <div id="leaderboard-content" aria-live="polite"></div>
+      </section>
+      <section class="scene-picker" aria-labelledby="explore-heading">
+        <div class="section-heading">
+          <div>
+            <span class="small-label">A CHANGE OF SCENERY</span>
+            <h2 id="explore-heading">Where to next?</h2>
+          </div>
+          <span>More places. More hiding spots.</span>
+        </div>
+        <div id="scene-cards" class="scene-cards"></div>
+      </section>
+      <footer class="site-footer">
+        <span class="footer-brand">field notes.</span>
+        <p>A little curiosity goes a long way.</p>
+        <span>Made for the joy of finding.</span>
+      </footer>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <dialog id="help-dialog">
+      <button
+        class="dialog-close"
+        data-close="help-dialog"
+        aria-label="Close instructions"
+      >
+        <svg class="icon"><use href="#close" /></svg></button
+      ><span class="dialog-illustration"
+        ><svg class="icon"><use href="#search" /></svg></span
+      ><span class="small-label">THE ART OF LOOKING CLOSER</span>
+      <h2>A small guide to the hunt.</h2>
+      <ol class="help-steps">
+        <li>
+          <span>01</span>
+          <div>
+            <h3>Choose your little world.</h3>
+            <p>
+              Pick a scene and start your hunt. The timer begins when you’re
+              ready.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span>02</span>
+          <div>
+            <h3>Spot a familiar face.</h3>
+            <p>
+              Click the scene and choose a character. A correct find gets a
+              marker. Zoom in and scroll for a closer look.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span>03</span>
+          <div>
+            <h3>Find the whole gang.</h3>
+            <p>
+              Find all three to stop the clock, then add your name to the
+              leaderboard.
+            </p>
+          </div>
+        </li>
+      </ol>
+      <p class="keyboard-help">
+        Keyboard: focus the scene, use arrow keys to move the cursor, then Enter
+        to tag. Press Escape to close a selection.
+      </p>
+      <button class="primary-button full-width" data-close="help-dialog">
+        Got it. Let’s explore <svg class="icon"><use href="#arrow" /></svg>
+      </button>
+    </dialog>
+    <dialog id="finish-dialog">
+      <button
+        class="dialog-close"
+        data-close="finish-dialog"
+        aria-label="Close results"
+      >
+        <svg class="icon"><use href="#close" /></svg></button
+      ><span class="celebration">✳</span
+      ><span class="small-label">THREE FOUND. ONE GREAT ADVENTURE.</span>
+      <h2>Quite the eagle eye.</h2>
+      <p>
+        You found everyone in
+        <strong id="finish-scene">Sunday in the park</strong>.
+      </p>
+      <div class="finish-time">
+        <svg class="icon"><use href="#clock" /></svg
+        ><span id="finish-time">00:00</span><span>YOUR TIME</span>
+      </div>
+      <form id="score-form">
+        <label for="player-name">Leave your name in the field notes.</label
+        ><input
+          id="player-name"
+          name="name"
+          placeholder="Your explorer name"
+          maxlength="24"
+          autocomplete="nickname"
+          required
+        />
+        <p id="score-error" class="form-error" role="alert"></p>
+        <button id="save-score" class="primary-button full-width" type="submit">
+          Save my score <svg class="icon"><use href="#arrow" /></svg>
+        </button>
+      </form>
+      <div id="score-success" hidden>
+        <p id="score-success-message"></p>
+        <button id="finish-leaderboard" class="primary-button full-width">
+          See the leaderboard <svg class="icon"><use href="#arrow" /></svg>
+        </button>
+      </div>
+      <button id="play-again" class="text-button">One more adventure?</button>
+    </dialog>
+    <dialog id="confirm-dialog">
+      <span class="small-label">A FRESH START</span>
+      <h2>Ready for a new adventure?</h2>
+      <p>Your current hunt will end. Its unfinished time won’t be saved.</p>
+      <div class="confirm-actions">
+        <button id="cancel-change" class="secondary-button">Keep looking</button
+        ><button id="confirm-change" class="primary-button">
+          Start fresh <svg class="icon"><use href="#arrow" /></svg>
+        </button>
+      </div>
+    </dialog>
+  </body>
+</html>

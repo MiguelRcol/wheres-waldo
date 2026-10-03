@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: waldo-field-notes
+    runtime: node
+    plan: 0.5c-512mb
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 24.19.0
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_PATH
+        value: /var/data/waldo.sqlite
+    disk:
+      name: waldo-data
+      mountPath: /var/data
+      sizeGB: 1
